@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/Authprovider";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import authgif  from '../../assets/others/authentication2.png'
 
 const Signup = () => {
     const { register, handleSubmit,reset, watch, formState: { errors } } = useForm();
@@ -40,11 +41,11 @@ const {createUser, updateUserProfile} = useContext(AuthContext);
         <title>Sign up</title>
         
       </Helmet>
-         <div className="min-h-screen hero bg-base-200">
+         <div className="min-h-screen bg-teal-400 hero">
         <div className="flex-col hero-content lg:flex-row-reverse">
           <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Signup now!</h1>
-            <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+            <h1 className="text-5xl font-bold text-center text-white">Signup now!</h1>
+            <p className="py-6"> <img src={authgif} alt="" /></p>
           </div>
           <div className="flex-shrink-0 w-full max-w-sm shadow-2xl card bg-base-100">
             <form onSubmit={handleSubmit(onSubmit)}  className="card-body">
@@ -80,7 +81,7 @@ const {createUser, updateUserProfile} = useContext(AuthContext);
                 </label>
               </div>
               <div className="mt-6 form-control">
-               <input type="submit" className="btn btn-primary" value="sign up" />
+               <input type="submit" className="text-white bg-teal-400 btn" value="sign up" />
               </div>
             </form>
             <p>

@@ -4,6 +4,8 @@ import { AuthContext } from '../../providers/Authprovider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
+import GoogleSignIn from './GoogleSignIn';
+import authgif  from '../../assets/others/authentication.gif'
 
 const Login = () => {
 
@@ -56,14 +58,16 @@ const handleValidateCaptcha = (e) =>{
         <title>Login</title>
         
       </Helmet>
-          <div className="min-h-screen hero bg-base-200">
-        <div className="flex-col hero-content md:flex-row-reverse">
+          <div className="min-h-screen bg-teal-400 " >
+        <div className="flex-col hero-content md:flex-row-reverse" style={{ 
+      backgroundImage: `url('./../../assets/others/authentication.png)` 
+    }} >
           <div className="text-center lg:text-left md:w-1/2">
-            <h1 className="text-5xl font-bold">Login now!</h1>
-            <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+            <h1 className="text-5xl font-bold text-center text-white">Login now!</h1>
+            <p className="py-6"> <img className='rounded-full' src={authgif} alt="" /></p>
           </div>
           <div className="max-w-sm shadow-2xl md:w-1/2 card bg-base-100">
-            <form onSubmit={handlelogin} className="card-body">
+            <form  onSubmit={handlelogin} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -89,9 +93,10 @@ const handleValidateCaptcha = (e) =>{
               </div>
               <div className="mt-6 form-control">
                
-                <input disabled={disabled}  className="btn btn-primary" type="submit" value="Login" />
+                <input disabled={disabled}  className="text-white bg-teal-400 btn" type="submit" value="Login" />
               </div>
             </form>
+            <GoogleSignIn></GoogleSignIn>
             <p> <small>New here? <Link to="/signup">Create an account</Link></small></p>
           </div>
         </div>
