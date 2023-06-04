@@ -12,7 +12,7 @@ import Menucategory from '../Menucategory/Menucategory';
 
 const Menu = () => {
     const [menu] = useMenu();
-    const desert = menu.filter(item => item.category == 'dessert'); 
+    const dessert = menu.filter(item => item.category == 'dessert'); 
     const soup = menu.filter(item => item.category == 'soup'); 
     const salad = menu.filter(item => item.category == 'salad'); 
     const pizza = menu.filter(item => item.category == 'pizza'); 
@@ -29,10 +29,10 @@ const Menu = () => {
       <Cover img={menuimg} title="Our Menu" subtitle="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam laboriosam itaque ducimus ratione ullam. Exercitationem facere voluptatem beatae corrupti, assumenda eaque voluptatum optio aliquid necessitatibus."></Cover>
 <Sectionstittle subHeading="Dont miss" heading="today's offer"></Sectionstittle>
     <Menucategory items={offered}></Menucategory>
-          <Menucategory items={desert} title="Desert" img={desetimg}></Menucategory> 
-          <Menucategory items={pizza} title="Pizza" img={pizzaimg}></Menucategory> 
-          <Menucategory items={salad} title="Salad" img={saladimg}></Menucategory> 
-          <Menucategory items={soup} title="Soup" img={soupimg}></Menucategory> 
+          <Menucategory items={dessert} title="dessert" img={desetimg}></Menucategory> 
+          <Menucategory items={pizza} title="pizza" img={pizzaimg}></Menucategory> 
+          <Menucategory items={salad} title="salad" img={saladimg}></Menucategory> 
+          <Menucategory items={soup} title="soup" img={soupimg}></Menucategory> 
         </div>
     );
 };
