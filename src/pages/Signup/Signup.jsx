@@ -6,6 +6,7 @@ import { AuthContext } from "../../providers/Authprovider";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import authgif  from '../../assets/others/authentication2.png'
+import GoogleSignIn from "../Login/GoogleSignIn";
 
 const Signup = () => {
     const { register, handleSubmit,reset, watch, formState: { errors } } = useForm();
@@ -21,16 +22,30 @@ const {createUser, updateUserProfile} = useContext(AuthContext);
             console.log(loggedUser);
             updateUserProfile(data.name , data.photoURL)
             .then(() =>{
-              console.log('user profile info updated')
-              reset();
-              Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'User created successfully',
-                showConfirmButton: false,
-                timer: 1500
-              });
-              navigate('/');
+              const saveUser = {name : data.name, email:data.email}
+             fetch('http://localhost:5000/users',{
+              method: 'POST',
+              headers: {
+                'content-type':'application/json'
+              },
+              body : JSON.stringify(saveUser)
+             })
+             .then(res => res.json())
+             .then(data => {
+              if(data.insertedId){
+                reset();
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'User created successfully',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                navigate('/');
+
+              }
+             })
+           
             })
             .catch(error => console.log(error))
         })}
@@ -89,6 +104,7 @@ const {createUser, updateUserProfile} = useContext(AuthContext);
                 Already signed up? <Link to='/login'>Log in</Link>
               </small>
             </p>
+            <GoogleSignIn></GoogleSignIn>
           </div>
         </div>
       </div>

@@ -26,15 +26,30 @@ const GoogleSignIn = () => {
             .then(result =>{
                 const loggedinUser = result.user;
                 console.log(loggedinUser);
+                const saveUser = {name : loggedinUser.displayName, email : loggedinUser.email}
+                fetch('http://localhost:5000/users',{
+              method: 'POST',
+              headers: {
+                'content-type':'application/json'
+              },
+              body : JSON.stringify(saveUser)
+             })
+             .then(res => res.json())
+             .then(() => {
+              
+                navigate(from,{replace: true});
+              
                 setUser(loggedinUser);
+                
                 
          
             })
+            
             .catch(error => {
                 console.log('error', error.message)
             })
             
-        }
+            })}
 
        
     
@@ -59,7 +74,7 @@ const GoogleSignIn = () => {
                 .catch(error => {
                     console.log(error)
                 })
-                navigate(from,{replace: true});
+                
             }
     return (
         <div className='mx-auto'>
@@ -67,7 +82,7 @@ const GoogleSignIn = () => {
          user ?
        <div>
        <button className="bg-teal-400 btn" onClick={handleSignout}>Sign out from google</button> 
-         <button className="bg-teal-400 btn"><Link to='/'>Home</Link></button>
+        
        </div> :
             <div>
             <button className='me-5 "bg-teal-400 btn rounded-full' onClick={handlegoogleSignin}> <FaGoogle></FaGoogle></button>
